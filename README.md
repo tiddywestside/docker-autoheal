@@ -1,13 +1,14 @@
+# Fork Version
+
+Fork from willfarrell/docker-autoheal.
+Take ntfy pull request created by strpc (https://github.com/strpc) and add it to docker-entrypoint as it doesn't look like the pull request will ever be approved.
+Also gives me control of Alpine version.
+
 # Docker Autoheal
 
 Monitor and restart unhealthy docker containers. 
 This functionality was proposed to be included with the addition of `HEALTHCHECK`, however didn't make the cut.
 This container is a stand-in till there is native support for `--exit-on-unhealthy` https://github.com/docker/docker/pull/22719.
-
-## Supported tags and Dockerfile links
-- [`latest` (*Dockerfile*)](https://github.com/willfarrell/docker-autoheal/blob/main/Dockerfile) - Built daily
-- [`1.1.0` (*Dockerfile*)](https://github.com/willfarrell/docker-autoheal/blob/1.1.0/Dockerfile)
-- [`v0.7.0` (*Dockerfile*)](https://github.com/willfarrell/docker-autoheal/blob/v0.7.0/Dockerfile)
 
 
 ![](https://img.shields.io/docker/pulls/willfarrell/autoheal "Total docker pulls") [![](https://images.microbadger.com/badges/image/willfarrell/autoheal.svg)](http://microbadger.com/images/willfarrell/autoheal "Docker layer breakdown")
@@ -110,6 +111,9 @@ services:
 |`DOCKER_SOCK=/var/run/docker.sock`    |Unix socket for curl requests to Docker API|
 |`CURL_TIMEOUT=30`                     |--max-time seconds for curl requests to Docker API|
 |`WEBHOOK_URL=""`                      |post message to the webhook if a container was restarted (or restart failed)|
+|`NTFY_URL=""`                         |ntfy webook url in format of url/subscription?auth={authkey}|
+|`NTFY_TITLE=""`                       |ntfy title that will be posted to the notification|
+|`NTFY_TAGS=""`                        |skull,rotating_light,warning  # https://docs.ntfy.sh/emojis/|
 
 ## Testing (building locally)
 ```bash
