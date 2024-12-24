@@ -84,12 +84,13 @@ services:
       autoheal-app: true
 
   autoheal:
-    deploy:
-      replicas: 1
     environment:
       AUTOHEAL_CONTAINER_LABEL: autoheal-app
-    image: willfarrell/autoheal:latest
-    network_mode: none
+      NTFY_URL: "url/Subscription?auth={key}}"  # https://docs.ntfy.sh/
+      NTFY_TITLE: "Unhealthy Container!"
+      NTFY_TAGS: "skull,rotating_light,warning"  # https://docs.ntfy.sh/emojis/
+    image: ghcr.io/tiddywestside/docker-autoheal:latest
+    network_mode: host
     restart: always
     volumes:
       - /etc/localtime:/etc/localtime:ro
